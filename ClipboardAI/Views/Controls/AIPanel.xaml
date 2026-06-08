@@ -23,22 +23,25 @@
             <Grid Margin="0,0,0,8">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
                 
-                <Button Grid.Column="0" Content="&gt;" Width="32" Height="32" Command="{Binding ClosePanelCommand}" 
-                        Foreground="White" FontSize="18" FontWeight="Bold" Cursor="Hand" ToolTip="Close AI Panel" VerticalAlignment="Center" Margin="0,0,12,0">
+                <TextBlock Grid.Column="0" Text="✨" FontSize="28" Margin="0,0,12,0" VerticalAlignment="Center"/>
+                <TextBlock Grid.Column="1" Text="Smart AI Assistant" FontSize="24" FontWeight="SemiBold" Foreground="White" VerticalAlignment="Center"/>
+
+                <Button Grid.Column="2" Content="&#xE76C;" FontFamily="Segoe MDL2 Assets" Width="40" Height="24" Command="{Binding ClosePanelCommand}" 
+                        Foreground="White" FontSize="14" FontWeight="Bold" Cursor="Hand" ToolTip="Close AI Panel" VerticalAlignment="Center">
                     <Button.Template>
                         <ControlTemplate TargetType="Button">
-                            <Border Name="BtnBorder" CornerRadius="16">
+                            <Border Name="BtnBorder" CornerRadius="12">
                                 <Border.Background>
                                     <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
                                         <GradientStop Color="#0EA5E9" Offset="0.0" /> <!-- Blue -->
                                         <GradientStop Color="#FACC15" Offset="1.0" /> <!-- Yellow -->
                                     </LinearGradientBrush>
                                 </Border.Background>
-                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,2"/>
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0"/>
                             </Border>
                             <ControlTemplate.Triggers>
                                 <Trigger Property="IsMouseOver" Value="True">
@@ -47,7 +50,7 @@
                                 <Trigger Property="IsPressed" Value="True">
                                     <Setter TargetName="BtnBorder" Property="RenderTransform">
                                         <Setter.Value>
-                                            <ScaleTransform ScaleX="0.9" ScaleY="0.9" CenterX="16" CenterY="16"/>
+                                            <ScaleTransform ScaleX="0.95" ScaleY="0.95" CenterX="20" CenterY="12"/>
                                         </Setter.Value>
                                     </Setter>
                                 </Trigger>
@@ -60,9 +63,6 @@
                         </TransformGroup>
                     </Button.RenderTransform>
                 </Button>
-
-                <TextBlock Grid.Column="1" Text="✨" FontSize="28" Margin="0,0,12,0" VerticalAlignment="Center"/>
-                <TextBlock Grid.Column="2" Text="Smart AI Assistant" FontSize="24" FontWeight="SemiBold" Foreground="White" VerticalAlignment="Center"/>
             </Grid>
             <TextBlock Text="Choose an AI action to process your clipboard content." Foreground="#A0A0A0" FontSize="14" TextWrapping="Wrap"/>
             
