@@ -80,6 +80,11 @@ public partial class GeneralSettingsViewModel : ObservableObject
         {
             UpdateRegistryStartup(false);
             
+            // 1. Hủy đăng ký tất cả các Phím tắt hệ thống để giải phóng bộ nhớ.
+            try { NHotkey.Wpf.HotkeyManager.Current.Remove("OpenPopup"); } catch { }
+            try { NHotkey.Wpf.HotkeyManager.Current.Remove("ToggleBatchCopy"); } catch { }
+            
+            // 2 & 3. Xóa dữ liệu SQLite và Images
             string appDataPath = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "ClipboardAI");
             try 
             {
@@ -94,6 +99,9 @@ public partial class GeneralSettingsViewModel : ObservableObject
                 }
             } 
             catch { }
+            
+            // 4. Hiển thị thông báo "Đã dọn dẹp sạch sẽ!"
+            System.Windows.MessageBox.Show("Đã dọn dẹp sạch sẽ toàn bộ dữ liệu cấu hình và lịch sử!\n\nỨng dụng sẽ tự động thoát ngay bây giờ. Bạn có thể an tâm xóa file .exe đi.", "Hoàn tất Gỡ bỏ", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Information);
             
             System.Windows.Application.Current.Shutdown();
         }

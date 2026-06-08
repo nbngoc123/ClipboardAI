@@ -5,6 +5,7 @@
         WindowStartupLocation="CenterOwner"
         ResizeMode="NoResize"
         WindowStyle="ToolWindow"
+        Icon="pack://application:,,,/app_icon.png"
         Background="#1F1F1F" Foreground="White"
         PreviewKeyDown="Window_PreviewKeyDown"
         PreviewKeyUp="Window_PreviewKeyUp">

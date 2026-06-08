@@ -7,7 +7,8 @@
         xmlns:settings="clr-namespace:ClipboardAI.Views.Settings"
         mc:Ignorable="d"
         Title="ClipboardAI Settings" Height="700" Width="1000"
-        WindowStartupLocation="CenterScreen" Background="{StaticResource PtSurfaceContentBrush}">
+        WindowStartupLocation="CenterScreen" Background="{StaticResource PtSurfaceContentBrush}"
+        Icon="pack://application:,,,/app_icon.png">
     
     <Grid>
         <TabControl x:Name="SidebarNav" Background="Transparent" BorderThickness="0" TabStripPlacement="Left" Padding="0">
@@ -46,7 +47,7 @@
                                 </StackPanel>
 
                                 <!-- Navigation Items -->
-                                <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+                                <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Hidden">
                                     <StackPanel>
                                         <TextBlock Text="GENERAL" FontSize="12" FontWeight="SemiBold" Foreground="#888888" Margin="20,16,0,8"/>
                                         <TabPanel x:Name="HeaderPanel" IsItemsHost="True" Margin="0,0,0,0"/>

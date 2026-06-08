@@ -18,7 +18,7 @@ public class TrayIconService : ITrayIconService, IDisposable
         {
             _taskbarIcon = new TaskbarIcon
             {
-                Icon = System.Drawing.Icon.ExtractAssociatedIcon(System.Reflection.Assembly.GetExecutingAssembly().Location),
+                Icon = System.Drawing.Icon.ExtractAssociatedIcon(System.Environment.ProcessPath ?? string.Empty),
                 ToolTipText = "ClipboardAI is running"
             };
 
