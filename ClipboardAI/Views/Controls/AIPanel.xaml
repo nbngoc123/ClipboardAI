@@ -27,21 +27,38 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 
-                <Button Grid.Column="0" Content="&lt;" Width="32" Height="32" Command="{Binding ClosePanelCommand}" 
-                        Background="Transparent" BorderThickness="0" Foreground="#888888" FontSize="18" FontWeight="Bold" Cursor="Hand" ToolTip="Close AI Panel" VerticalAlignment="Center" Margin="0,0,8,0">
+                <Button Grid.Column="0" Content="&gt;" Width="32" Height="32" Command="{Binding ClosePanelCommand}" 
+                        Foreground="White" FontSize="18" FontWeight="Bold" Cursor="Hand" ToolTip="Close AI Panel" VerticalAlignment="Center" Margin="0,0,12,0">
                     <Button.Template>
                         <ControlTemplate TargetType="Button">
-                            <Border Name="BtnBorder" Background="Transparent" CornerRadius="4">
-                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            <Border Name="BtnBorder" CornerRadius="16">
+                                <Border.Background>
+                                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                        <GradientStop Color="#0EA5E9" Offset="0.0" /> <!-- Blue -->
+                                        <GradientStop Color="#FACC15" Offset="1.0" /> <!-- Yellow -->
+                                    </LinearGradientBrush>
+                                </Border.Background>
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,2"/>
                             </Border>
                             <ControlTemplate.Triggers>
                                 <Trigger Property="IsMouseOver" Value="True">
-                                    <Setter TargetName="BtnBorder" Property="Background" Value="#333333"/>
-                                    <Setter Property="Foreground" Value="White"/>
+                                    <Setter TargetName="BtnBorder" Property="Opacity" Value="0.8"/>
+                                </Trigger>
+                                <Trigger Property="IsPressed" Value="True">
+                                    <Setter TargetName="BtnBorder" Property="RenderTransform">
+                                        <Setter.Value>
+                                            <ScaleTransform ScaleX="0.9" ScaleY="0.9" CenterX="16" CenterY="16"/>
+                                        </Setter.Value>
+                                    </Setter>
                                 </Trigger>
                             </ControlTemplate.Triggers>
                         </ControlTemplate>
                     </Button.Template>
+                    <Button.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                        </TransformGroup>
+                    </Button.RenderTransform>
                 </Button>
 
                 <TextBlock Grid.Column="1" Text="✨" FontSize="28" Margin="0,0,12,0" VerticalAlignment="Center"/>
