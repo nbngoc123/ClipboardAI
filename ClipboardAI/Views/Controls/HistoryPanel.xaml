@@ -81,7 +81,7 @@
                         <StackPanel Grid.Column="2" Orientation="Horizontal" VerticalAlignment="Top" Margin="8,0,0,0">
                             <!-- Copy Button -->
                             <Button Content="📋" Width="28" Height="28" Background="Transparent" BorderThickness="0" Foreground="#0EA5E9" ToolTip="Copy to Clipboard" Cursor="Hand" Margin="0,0,4,0"
-                                    Command="{Binding DataContext.CopyToClipboardCommand, RelativeSource={RelativeSource AncestorType=UserControl}}" 
+                                    Command="{Binding DataContext.CopyToClipboardCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}" 
                                     CommandParameter="{Binding}">
                                 <Button.Template>
                                     <ControlTemplate TargetType="Button">
@@ -99,7 +99,7 @@
                             
                             <!-- Delete Button -->
                             <Button Content="❌" Width="28" Height="28" Background="Transparent" BorderThickness="0" Foreground="#FF4A4A" ToolTip="Delete Item" Cursor="Hand"
-                                    Command="{Binding DataContext.DeleteItemCommand, RelativeSource={RelativeSource AncestorType=UserControl}}" 
+                                    Command="{Binding DataContext.DeleteItemCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}" 
                                     CommandParameter="{Binding}">
                                 <Button.Template>
                                     <ControlTemplate TargetType="Button">

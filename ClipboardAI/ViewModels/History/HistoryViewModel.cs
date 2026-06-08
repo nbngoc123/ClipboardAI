@@ -95,11 +95,30 @@ public partial class HistoryViewModel : ObservableObject
     [RelayCommand]
     private void CopyToClipboard(ClipboardItem item)
     {
-        if (item == null) return;
-        if (!string.IsNullOrEmpty(item.Content))
+        if (item == null || string.IsNullOrEmpty(item.Content)) return;
+        
+        for (int i = 0; i < 10; i++)
         {
-            try { System.Windows.Clipboard.SetText(item.Content); } catch { }
+            try 
+            { 
+                if (item.ContentType == ClipboardContentType.Text)
+                {
+                    System.Windows.Clipboard.SetText(item.Content); 
+                }
+                else if (item.ContentType == ClipboardContentType.Image)
+                {
+                    var bmp = new System.Windows.Media.Imaging.BitmapImage(new System.Uri(item.Content));
+                    System.Windows.Clipboard.SetImage(bmp);
+                }
+                break;
+            } 
+            catch (System.Runtime.InteropServices.COMException) 
+            { 
+                System.Threading.Thread.Sleep(20); 
+            }
+            catch { break; }
         }
+        
         ShowToast("Copied to clipboard!");
     }
 

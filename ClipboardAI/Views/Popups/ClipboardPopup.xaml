@@ -52,12 +52,12 @@
             
             <!-- Toast Notification -->
             <Border Grid.Row="0" Grid.RowSpan="2" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,40"
-                    Background="#10B981" CornerRadius="20" Padding="16,8" Panel.ZIndex="999"
+                    Background="#EEFFFFFF" BorderBrush="#E2E8F0" BorderThickness="1" CornerRadius="20" Padding="16,8" Panel.ZIndex="999"
                     Visibility="{Binding HistoryViewModel.IsToastVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <Border.Effect>
                     <DropShadowEffect Color="Black" BlurRadius="10" ShadowDepth="2" Opacity="0.5"/>
                 </Border.Effect>
-                <TextBlock Text="{Binding HistoryViewModel.ToastMessage}" Foreground="White" FontWeight="SemiBold" FontSize="14"/>
+                <TextBlock Text="{Binding HistoryViewModel.ToastMessage}" Foreground="#0F172A" FontWeight="SemiBold" FontSize="13"/>
             </Border>
         </Grid>
     </Border>
