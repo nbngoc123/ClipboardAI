@@ -36,7 +36,7 @@
                 <Border Grid.Column="2" Background="{StaticResource PtCardBrush}" BorderBrush="{StaticResource PtBorderBrush}" BorderThickness="1" CornerRadius="8" Padding="16">
                     <StackPanel>
                         <TextBlock Text="Version" Foreground="{StaticResource PtTextSecondaryBrush}" FontSize="12" Margin="0,0,0,8"/>
-                        <TextBlock Text="1.0.0" FontSize="24" FontWeight="SemiBold" Foreground="{StaticResource PtTextPrimaryBrush}" Margin="0,0,0,8"/>
+                        <TextBlock Text="2.0.0" FontSize="24" FontWeight="SemiBold" Foreground="{StaticResource PtTextPrimaryBrush}" Margin="0,0,0,8"/>
                         <TextBlock Text="up to date" Foreground="{StaticResource PtTextSecondaryBrush}" FontSize="12"/>
                     </StackPanel>
                 </Border>
