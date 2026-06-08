@@ -12,183 +12,183 @@
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
     </UserControl.Resources>
 
-    <Grid Margin="16">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
+    <Grid>
+        <!-- Main Content with margin on right for the handle -->
+        <Grid Margin="16,16,24,16">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
 
-        <!-- Header -->
-        <StackPanel Grid.Row="0" Margin="0,0,0,16">
-            <Grid Margin="0,0,0,8">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="Auto"/>
-                </Grid.ColumnDefinitions>
+            <!-- Header -->
+            <StackPanel Grid.Row="0" Margin="0,0,0,16">
+                <Grid Margin="0,0,0,8">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    
+                    <TextBlock Grid.Column="0" Text="✨" FontSize="28" Margin="0,0,12,0" VerticalAlignment="Center"/>
+                    <TextBlock Grid.Column="1" Text="Smart AI Assistant" FontSize="24" FontWeight="SemiBold" Foreground="White" VerticalAlignment="Center"/>
+                </Grid>
+                <TextBlock Text="Choose an AI action to process your clipboard content." Foreground="#A0A0A0" FontSize="14" TextWrapping="Wrap"/>
                 
-                <TextBlock Grid.Column="0" Text="✨" FontSize="28" Margin="0,0,12,0" VerticalAlignment="Center"/>
-                <TextBlock Grid.Column="1" Text="Smart AI Assistant" FontSize="24" FontWeight="SemiBold" Foreground="White" VerticalAlignment="Center"/>
+                <StackPanel Orientation="Horizontal" Margin="0,12,0,0">
+                    <Button Content="Extract Info" Command="{Binding ExtractDataCommand}" Foreground="White" Background="#0EA5E9" BorderThickness="0" Padding="12,6" Margin="0,0,8,0" Cursor="Hand">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Name="BtnBorder" Background="{TemplateBinding Background}" CornerRadius="4">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" Margin="{TemplateBinding Padding}"/>
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter TargetName="BtnBorder" Property="Background" Value="#0284C7"/>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
 
-                <Button Grid.Column="2" Content="&#xE76C;" FontFamily="Segoe MDL2 Assets" Width="40" Height="24" Command="{Binding ClosePanelCommand}" 
-                        Foreground="#FACC15" FontSize="14" FontWeight="Bold" Cursor="Hand" ToolTip="Close AI Panel" VerticalAlignment="Center">
-                    <Button.Template>
-                        <ControlTemplate TargetType="Button">
-                            <Border Name="BtnBorder" CornerRadius="12" Background="#0EA5E9">
-                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0"/>
-                            </Border>
-                            <ControlTemplate.Triggers>
-                                <Trigger Property="IsMouseOver" Value="True">
-                                    <Setter TargetName="BtnBorder" Property="Opacity" Value="0.8"/>
-                                </Trigger>
-                                <Trigger Property="IsPressed" Value="True">
-                                    <Setter TargetName="BtnBorder" Property="RenderTransform">
-                                        <Setter.Value>
-                                            <ScaleTransform ScaleX="0.95" ScaleY="0.95" CenterX="20" CenterY="12"/>
-                                        </Setter.Value>
-                                    </Setter>
-                                </Trigger>
-                            </ControlTemplate.Triggers>
-                        </ControlTemplate>
-                    </Button.Template>
-                    <Button.RenderTransform>
-                        <TransformGroup>
-                            <ScaleTransform/>
-                        </TransformGroup>
-                    </Button.RenderTransform>
-                </Button>
-            </Grid>
-            <TextBlock Text="Choose an AI action to process your clipboard content." Foreground="#A0A0A0" FontSize="14" TextWrapping="Wrap"/>
-            
-            <StackPanel Orientation="Horizontal" Margin="0,12,0,0">
-                <Button Content="Extract Info" Command="{Binding ExtractDataCommand}" Foreground="White" Background="#0EA5E9" BorderThickness="0" Padding="12,6" Margin="0,0,8,0" Cursor="Hand">
-                    <Button.Template>
-                        <ControlTemplate TargetType="Button">
-                            <Border Name="BtnBorder" Background="{TemplateBinding Background}" CornerRadius="4">
-                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" Margin="{TemplateBinding Padding}"/>
-                            </Border>
-                            <ControlTemplate.Triggers>
-                                <Trigger Property="IsMouseOver" Value="True">
-                                    <Setter TargetName="BtnBorder" Property="Background" Value="#0284C7"/>
-                                </Trigger>
-                            </ControlTemplate.Triggers>
-                        </ControlTemplate>
-                    </Button.Template>
-                </Button>
-
-                <Button Content="Translate &amp; Summarize" Command="{Binding SummarizeAndTranslateCommand}" Foreground="White" Background="#22C55E" BorderThickness="0" Padding="12,6" Cursor="Hand">
-                    <Button.Template>
-                        <ControlTemplate TargetType="Button">
-                            <Border Name="BtnBorder" Background="{TemplateBinding Background}" CornerRadius="4">
-                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" Margin="{TemplateBinding Padding}"/>
-                            </Border>
-                            <ControlTemplate.Triggers>
-                                <Trigger Property="IsMouseOver" Value="True">
-                                    <Setter TargetName="BtnBorder" Property="Background" Value="#16A34A"/>
-                                </Trigger>
-                            </ControlTemplate.Triggers>
-                        </ControlTemplate>
-                    </Button.Template>
-                </Button>
+                    <Button Content="Translate &amp; Summarize" Command="{Binding SummarizeAndTranslateCommand}" Foreground="White" Background="#22C55E" BorderThickness="0" Padding="12,6" Cursor="Hand">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Name="BtnBorder" Background="{TemplateBinding Background}" CornerRadius="4">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" Margin="{TemplateBinding Padding}"/>
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter TargetName="BtnBorder" Property="Background" Value="#16A34A"/>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                </StackPanel>
             </StackPanel>
-        </StackPanel>
 
-        <!-- Content Area -->
-        <Grid Grid.Row="1">
-            <!-- Loading State -->
-            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" 
-                        Visibility="{Binding IsLoading, Converter={StaticResource BooleanToVisibilityConverter}}">
-                <TextBlock Text="⏳" FontSize="48" HorizontalAlignment="Center" Margin="0,0,0,16">
-                    <TextBlock.Triggers>
-                        <EventTrigger RoutedEvent="Loaded">
-                            <BeginStoryboard>
-                                <Storyboard>
-                                    <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(RotateTransform.Angle)"
-                                                     From="0" To="360" Duration="0:0:2" RepeatBehavior="Forever"/>
-                                </Storyboard>
-                            </BeginStoryboard>
-                        </EventTrigger>
-                    </TextBlock.Triggers>
-                    <TextBlock.RenderTransform>
-                        <RotateTransform CenterX="24" CenterY="24"/>
-                    </TextBlock.RenderTransform>
+            <!-- Content Area -->
+            <Grid Grid.Row="1">
+                <!-- Loading State -->
+                <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" 
+                            Visibility="{Binding IsLoading, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    <TextBlock Text="⏳" FontSize="48" HorizontalAlignment="Center" Margin="0,0,0,16">
+                        <TextBlock.Triggers>
+                            <EventTrigger RoutedEvent="Loaded">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(RotateTransform.Angle)"
+                                                         From="0" To="360" Duration="0:0:2" RepeatBehavior="Forever"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                        </TextBlock.Triggers>
+                        <TextBlock.RenderTransform>
+                            <RotateTransform CenterX="24" CenterY="24"/>
+                        </TextBlock.RenderTransform>
+                    </TextBlock>
+                    <TextBlock Text="Extracting data..." Foreground="#0EA5E9" FontSize="16" FontWeight="SemiBold" HorizontalAlignment="Center"/>
+                </StackPanel>
+
+                <!-- Error State -->
+                <TextBlock Text="{Binding ErrorMessage}" Foreground="#FF4A4A" TextWrapping="Wrap" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <TextBlock.Style>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="Visibility" Value="Collapsed"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding HasResult}" Value="False">
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding IsLoading}" Value="True">
+                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding ErrorMessage}" Value="">
+                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
                 </TextBlock>
-                <TextBlock Text="Extracting data..." Foreground="#0EA5E9" FontSize="16" FontWeight="SemiBold" HorizontalAlignment="Center"/>
-            </StackPanel>
 
-            <!-- Error State -->
-            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" 
-                        Visibility="{Binding ErrorMessage, Converter={StaticResource BooleanToVisibilityConverter}}">
-                <!-- We need a custom converter for string to visibility, or just triggers -->
-            </StackPanel>
-            <TextBlock Text="{Binding ErrorMessage}" Foreground="#FF4A4A" TextWrapping="Wrap" HorizontalAlignment="Center" VerticalAlignment="Center">
-                <TextBlock.Style>
-                    <Style TargetType="TextBlock">
-                        <Setter Property="Visibility" Value="Collapsed"/>
-                        <Style.Triggers>
-                            <DataTrigger Binding="{Binding HasResult}" Value="False">
-                                <Setter Property="Visibility" Value="Visible"/>
-                            </DataTrigger>
-                            <DataTrigger Binding="{Binding IsLoading}" Value="True">
-                                <Setter Property="Visibility" Value="Collapsed"/>
-                            </DataTrigger>
-                            <DataTrigger Binding="{Binding ErrorMessage}" Value="">
-                                <Setter Property="Visibility" Value="Collapsed"/>
-                            </DataTrigger>
-                        </Style.Triggers>
-                    </Style>
-                </TextBlock.Style>
-            </TextBlock>
-
-            <!-- Result List -->
-            <ScrollViewer VerticalScrollBarVisibility="Hidden" HorizontalScrollBarVisibility="Disabled">
-                <ScrollViewer.Style>
-                    <Style TargetType="ScrollViewer">
-                        <Setter Property="Visibility" Value="Collapsed"/>
-                        <Style.Triggers>
-                            <DataTrigger Binding="{Binding HasResult}" Value="True">
-                                <Setter Property="Visibility" Value="Visible"/>
-                            </DataTrigger>
-                        </Style.Triggers>
-                    </Style>
-                </ScrollViewer.Style>
-                
-                <ItemsControl ItemsSource="{Binding ExtractedFields}">
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <Border Background="#1A1A1A" BorderBrush="#333333" BorderThickness="1" CornerRadius="6" Margin="0,0,0,8" Padding="12,8">
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="Auto"/>
-                                    </Grid.ColumnDefinitions>
-                                    <StackPanel Grid.Column="0" VerticalAlignment="Center">
-                                        <TextBlock Text="{Binding Key}" Foreground="#888888" FontSize="12" FontWeight="SemiBold" Margin="0,0,0,2"/>
-                                        <TextBox Text="{Binding Value}" Foreground="White" FontSize="14" FontWeight="Medium" TextWrapping="Wrap" Background="Transparent" BorderThickness="0" IsReadOnly="True" Padding="0"/>
-                                    </StackPanel>
-                                    
-                                    <Button Grid.Column="1" Content="📋" Width="32" Height="32" Background="#2A2A2A" BorderThickness="0" Foreground="#0EA5E9" ToolTip="Copy Value" Cursor="Hand" Margin="8,0,0,0"
-                                            Command="{Binding DataContext.CopyFieldCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
-                                            CommandParameter="{Binding Value}">
-                                        <Button.Template>
-                                            <ControlTemplate TargetType="Button">
-                                                <Border Name="BtnBorder" Background="{TemplateBinding Background}" CornerRadius="4">
-                                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                                </Border>
-                                                <ControlTemplate.Triggers>
-                                                    <Trigger Property="IsMouseOver" Value="True">
-                                                        <Setter TargetName="BtnBorder" Property="Background" Value="#3A3A3A"/>
-                                                    </Trigger>
-                                                </ControlTemplate.Triggers>
-                                            </ControlTemplate>
-                                        </Button.Template>
-                                    </Button>
-                                </Grid>
-                            </Border>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
-            </ScrollViewer>
+                <!-- Result List -->
+                <ScrollViewer VerticalScrollBarVisibility="Hidden" HorizontalScrollBarVisibility="Disabled">
+                    <ScrollViewer.Style>
+                        <Style TargetType="ScrollViewer">
+                            <Setter Property="Visibility" Value="Collapsed"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding HasResult}" Value="True">
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </ScrollViewer.Style>
+                    
+                    <ItemsControl ItemsSource="{Binding ExtractedFields}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Border Background="#1A1A1A" BorderBrush="#333333" BorderThickness="1" CornerRadius="6" Margin="0,0,0,8" Padding="12,8">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+                                        <StackPanel Grid.Column="0" VerticalAlignment="Center">
+                                            <TextBlock Text="{Binding Key}" Foreground="#888888" FontSize="12" FontWeight="SemiBold" Margin="0,0,0,2"/>
+                                            <TextBox Text="{Binding Value}" Foreground="White" FontSize="14" FontWeight="Medium" TextWrapping="Wrap" Background="Transparent" BorderThickness="0" IsReadOnly="True" Padding="0"/>
+                                        </StackPanel>
+                                        
+                                        <Button Grid.Column="1" Content="📋" Width="32" Height="32" Background="#2A2A2A" BorderThickness="0" Foreground="#0EA5E9" ToolTip="Copy Value" Cursor="Hand" Margin="8,0,0,0"
+                                                Command="{Binding DataContext.CopyFieldCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                                CommandParameter="{Binding Value}">
+                                            <Button.Template>
+                                                <ControlTemplate TargetType="Button">
+                                                    <Border Name="BtnBorder" Background="{TemplateBinding Background}" CornerRadius="4">
+                                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                    </Border>
+                                                    <ControlTemplate.Triggers>
+                                                        <Trigger Property="IsMouseOver" Value="True">
+                                                            <Setter TargetName="BtnBorder" Property="Background" Value="#3A3A3A"/>
+                                                        </Trigger>
+                                                    </ControlTemplate.Triggers>
+                                                </ControlTemplate>
+                                            </Button.Template>
+                                        </Button>
+                                    </Grid>
+                                </Border>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </ScrollViewer>
+            </Grid>
         </Grid>
+
+        <!-- Drawer Handle (Close Button) on the Right Edge -->
+        <Button Content="&#xE76C;" FontFamily="Segoe MDL2 Assets" Width="20" Height="60" Command="{Binding ClosePanelCommand}" 
+                Foreground="#FACC15" FontSize="12" FontWeight="Bold" Cursor="Hand" ToolTip="Close AI Panel" 
+                HorizontalAlignment="Right" VerticalAlignment="Center">
+            <Button.Template>
+                <ControlTemplate TargetType="Button">
+                    <Border Name="BtnBorder" CornerRadius="8,0,0,8" Background="#0EA5E9">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="BtnBorder" Property="Opacity" Value="0.8"/>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="BtnBorder" Property="RenderTransform">
+                                <Setter.Value>
+                                    <ScaleTransform ScaleX="0.95" ScaleY="0.95" CenterX="10" CenterY="30"/>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Button.Template>
+            <Button.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                </TransformGroup>
+            </Button.RenderTransform>
+        </Button>
     </Grid>
 </UserControl>
