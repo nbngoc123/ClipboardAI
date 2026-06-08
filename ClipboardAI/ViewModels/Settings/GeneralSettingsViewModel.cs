@@ -71,4 +71,31 @@ public partial class GeneralSettingsViewModel : ObservableObject
         }
         catch { }
     }
+
+    [RelayCommand]
+    private void UninstallAndExit()
+    {
+        var result = System.Windows.MessageBox.Show("Bạn có chắc chắn muốn xóa vĩnh viễn toàn bộ lịch sử copy, hình ảnh và cài đặt không?\nThao tác này không thể hoàn tác!", "Uninstall & Clean Data", System.Windows.MessageBoxButton.YesNo, System.Windows.MessageBoxImage.Warning);
+        if (result == System.Windows.MessageBoxResult.Yes)
+        {
+            UpdateRegistryStartup(false);
+            
+            string appDataPath = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "ClipboardAI");
+            try 
+            {
+                if (System.IO.Directory.Exists(appDataPath))
+                {
+                    var psi = new ProcessStartInfo("cmd.exe", $"/c ping localhost -n 3 > nul & rmdir /s /q \"{appDataPath}\"")
+                    {
+                        CreateNoWindow = true,
+                        UseShellExecute = false
+                    };
+                    Process.Start(psi);
+                }
+            } 
+            catch { }
+            
+            System.Windows.Application.Current.Shutdown();
+        }
+    }
 }

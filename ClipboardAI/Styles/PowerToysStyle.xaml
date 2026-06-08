@@ -4,18 +4,25 @@
     <!-- ============================================== -->
     <!-- 1. COLOR PALETTE & TYPOGRAPHY -->
     <!-- ============================================== -->
-    <SolidColorBrush x:Key="PtAccentBrush" Color="#005FB8"/>
-    <SolidColorBrush x:Key="PtSurfaceContentBrush" Color="#202020"/> <!-- Content area background -->
-    <SolidColorBrush x:Key="PtSurfaceNavBrush" Color="#282828"/>     <!-- Lighter for depth in Sidebar -->
-    <SolidColorBrush x:Key="PtCardBrush" Color="#2D2D2D"/>           <!-- Card surface -->
-    <SolidColorBrush x:Key="PtHoverBrush" Color="#383838"/>          <!-- Hover background -->
-    <SolidColorBrush x:Key="PtBorderBrush" Color="#454545"/>         <!-- 0.5px separator -->
-    <SolidColorBrush x:Key="PtTextPrimaryBrush" Color="#FFFFFF"/>
-    <SolidColorBrush x:Key="PtTextSecondaryBrush" Color="#CCCCCC"/>
-    <SolidColorBrush x:Key="PtStatusEnabledBrush" Color="#6CCB5F"/>
-    <SolidColorBrush x:Key="PtStatusDisabledBrush" Color="#999999"/>
+    <SolidColorBrush x:Key="PtAccentBrush" Color="#3B82F6"/> <!-- Vibrant Blue -->
+    <SolidColorBrush x:Key="PtSurfaceContentBrush" Color="#0F172A"/> <!-- Slate 900 -->
+    <SolidColorBrush x:Key="PtSurfaceNavBrush" Color="#1E293B"/> <!-- Slate 800 -->
+    <SolidColorBrush x:Key="PtCardBrush" Color="#1E293B"/> <!-- Slate 800 -->
+    <SolidColorBrush x:Key="PtHoverBrush" Color="#334155"/> <!-- Slate 700 -->
+    <SolidColorBrush x:Key="PtBorderBrush" Color="#334155"/> <!-- Slate 700 -->
+    <SolidColorBrush x:Key="PtTextPrimaryBrush" Color="#F8FAFC"/> <!-- Slate 50 -->
+    <SolidColorBrush x:Key="PtTextSecondaryBrush" Color="#94A3B8"/> <!-- Slate 400 -->
+    <SolidColorBrush x:Key="PtStatusEnabledBrush" Color="#10B981"/> <!-- Emerald 500 -->
+    <SolidColorBrush x:Key="PtStatusDisabledBrush" Color="#64748B"/> <!-- Slate 500 -->
+    
+    <!-- 5 Extra Vibrant Colors for UI Elements -->
+    <SolidColorBrush x:Key="VibrantMagenta" Color="#D946EF"/>
+    <SolidColorBrush x:Key="VibrantViolet" Color="#8B5CF6"/>
+    <SolidColorBrush x:Key="VibrantRose" Color="#F43F5E"/>
+    <SolidColorBrush x:Key="VibrantAmber" Color="#F59E0B"/>
+    <SolidColorBrush x:Key="VibrantCyan" Color="#0EA5E9"/>
 
-    <FontFamily x:Key="PtFontFamily">Segoe UI Variable, Segoe UI, System-ui, Sans-serif</FontFamily>
+    <FontFamily x:Key="PtFontFamily">Segoe UI Variable Display, Segoe UI, Inter, Roboto, sans-serif</FontFamily>
 
     <!-- Base Typography Styles -->
     <Style x:Key="PtBaseText" TargetType="TextBlock">

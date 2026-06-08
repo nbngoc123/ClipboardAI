@@ -79,6 +79,31 @@
                     </Border>
                 </StackPanel>
             </Border>
+
+            <TextBlock Text="DANGER ZONE" Style="{StaticResource PtSectionTitle}" Foreground="{StaticResource VibrantRose}"/>
+            <Border Style="{StaticResource PtSectionCard}" BorderBrush="{StaticResource VibrantRose}" BorderThickness="1">
+                <StackPanel>
+                    <Border Padding="20,16">
+                        <Grid>
+                            <StackPanel VerticalAlignment="Center" Margin="0,0,160,0">
+                                <TextBlock Text="Uninstall &amp; Clean Data" FontSize="14" FontWeight="SemiBold" Foreground="{StaticResource VibrantRose}"/>
+                                <TextBlock Text="Permanently delete all clipboard history, images, and database" Foreground="{StaticResource PtTextSecondaryBrush}" FontSize="12" Margin="0,4,0,0"/>
+                            </StackPanel>
+                            <Button Content="Wipe Data" Width="100" Height="32" HorizontalAlignment="Right" VerticalAlignment="Center" 
+                                    Background="#4A0F1D" Foreground="{StaticResource VibrantRose}" BorderBrush="{StaticResource VibrantRose}" BorderThickness="1"
+                                    Command="{Binding UninstallAndExitCommand}" Cursor="Hand">
+                                <Button.Template>
+                                    <ControlTemplate TargetType="Button">
+                                        <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="4">
+                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Button.Template>
+                            </Button>
+                        </Grid>
+                    </Border>
+                </StackPanel>
+            </Border>
         </StackPanel>
     </ScrollViewer>
 </UserControl>
