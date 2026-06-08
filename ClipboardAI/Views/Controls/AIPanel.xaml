@@ -23,14 +23,12 @@
             <Grid Margin="0,0,0,8">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <TextBlock Grid.Column="0" Text="✨" FontSize="28" Margin="0,0,12,0" VerticalAlignment="Center"/>
-                <TextBlock Grid.Column="1" Text="Smart AI Assistant" FontSize="24" FontWeight="SemiBold" Foreground="White" VerticalAlignment="Center"/>
                 
-                <Button Grid.Column="2" Content="✕" Width="32" Height="32" Command="{Binding ClosePanelCommand}" 
-                        Background="Transparent" BorderThickness="0" Foreground="#888888" Cursor="Hand" ToolTip="Close AI Panel" VerticalAlignment="Top">
+                <Button Grid.Column="0" Content="&lt;" Width="32" Height="32" Command="{Binding ClosePanelCommand}" 
+                        Background="Transparent" BorderThickness="0" Foreground="#888888" FontSize="18" FontWeight="Bold" Cursor="Hand" ToolTip="Close AI Panel" VerticalAlignment="Center" Margin="0,0,8,0">
                     <Button.Template>
                         <ControlTemplate TargetType="Button">
                             <Border Name="BtnBorder" Background="Transparent" CornerRadius="4">
@@ -45,6 +43,9 @@
                         </ControlTemplate>
                     </Button.Template>
                 </Button>
+
+                <TextBlock Grid.Column="1" Text="✨" FontSize="28" Margin="0,0,12,0" VerticalAlignment="Center"/>
+                <TextBlock Grid.Column="2" Text="Smart AI Assistant" FontSize="24" FontWeight="SemiBold" Foreground="White" VerticalAlignment="Center"/>
             </Grid>
             <TextBlock Text="Choose an AI action to process your clipboard content." Foreground="#A0A0A0" FontSize="14" TextWrapping="Wrap"/>
             
