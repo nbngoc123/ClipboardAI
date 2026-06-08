@@ -1,0 +1,54 @@
+<Window x:Class="ClipboardAI.Views.Popups.ClipboardPopup"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:controls="clr-namespace:ClipboardAI.Views.Controls"
+        Title="Clipboard History" 
+        Height="520" Width="380"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        ResizeMode="NoResize"
+        ShowInTaskbar="False"
+        Topmost="True"
+        Background="Transparent"
+        Deactivated="Window_Deactivated">
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+    </Window.Resources>
+    
+    <Border Background="#202020" BorderBrush="#454545" BorderThickness="1" CornerRadius="8" Margin="10">
+        <Border.Effect>
+            <DropShadowEffect Color="Black" BlurRadius="15" ShadowDepth="4" Opacity="0.5"/>
+        </Border.Effect>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            
+            <!-- Header: Batch Recording & Settings -->
+            <Grid Grid.Row="0" Margin="16,12,16,8">
+                <TextBlock Text="🔴 Batch Recording Active" 
+                           Foreground="#FF4A4A" FontWeight="SemiBold" FontSize="12" HorizontalAlignment="Left" VerticalAlignment="Center"
+                           Visibility="{Binding HistoryViewModel.IsBatchRecording, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                <Button Content="⚙️" Width="28" Height="28" Background="Transparent" BorderThickness="0" Foreground="#AAAAAA"
+                        HorizontalAlignment="Right" VerticalAlignment="Center" Click="SettingsButton_Click" Cursor="Hand" ToolTip="Settings">
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border Name="BtnBorder" Background="Transparent" CornerRadius="4">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter TargetName="BtnBorder" Property="Background" Value="#333333"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+            </Grid>
+                       
+            <controls:SearchBar Grid.Row="0" DataContext="{Binding HistoryViewModel.SearchViewModel}" Margin="16,40,16,10"/>
+            <controls:HistoryPanel Grid.Row="1" DataContext="{Binding HistoryViewModel}" Margin="8,0,8,8"/>
+        </Grid>
+    </Border>
+</Window>

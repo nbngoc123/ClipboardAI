@@ -1,0 +1,156 @@
+<Window x:Class="ClipboardAI.Views.Windows.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:controls="clr-namespace:ClipboardAI.Views.Controls"
+        xmlns:settings="clr-namespace:ClipboardAI.Views.Settings"
+        mc:Ignorable="d"
+        Title="ClipboardAI Settings" Height="700" Width="1000"
+        WindowStartupLocation="CenterScreen" Background="{StaticResource PtSurfaceContentBrush}">
+    
+    <Grid>
+        <TabControl x:Name="SidebarNav" Background="Transparent" BorderThickness="0" TabStripPlacement="Left" Padding="0">
+            <TabControl.Template>
+                <ControlTemplate TargetType="TabControl">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="280"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        
+                        <!-- Sidebar Background & TabPanel -->
+                        <Border Grid.Column="0" Background="{StaticResource PtSurfaceNavBrush}" BorderBrush="{StaticResource PtBorderBrush}" BorderThickness="0,0,1,0">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                
+                                <!-- App Header -->
+                                <StackPanel Grid.Row="0" Margin="16,16,16,10">
+                                    <StackPanel Orientation="Horizontal" Margin="4,0,0,16">
+                                        <Border Width="24" Height="24" Background="{StaticResource PtAccentBrush}" CornerRadius="4" Margin="0,0,12,0">
+                                            <TextBlock Text="C" Foreground="White" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        </Border>
+                                        <TextBlock Text="ClipboardAI" FontSize="16" FontWeight="SemiBold" Foreground="White" VerticalAlignment="Center"/>
+                                    </StackPanel>
+                                    
+                                    <!-- Search Box -->
+                                    <Border Background="#1C1C1C" BorderBrush="{StaticResource PtBorderBrush}" BorderThickness="1" CornerRadius="4" Height="32">
+                                        <Grid>
+                                            <TextBlock Text="🔍" Foreground="#888888" FontSize="12" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                                            <TextBox Text="Search settings" Foreground="#AAAAAA" Background="Transparent" BorderThickness="0" Padding="32,0,8,0" VerticalContentAlignment="Center" FontSize="14"/>
+                                        </Grid>
+                                    </Border>
+                                </StackPanel>
+
+                                <!-- Navigation Items -->
+                                <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+                                    <StackPanel>
+                                        <TextBlock Text="GENERAL" FontSize="12" FontWeight="SemiBold" Foreground="#888888" Margin="20,16,0,8"/>
+                                        <TabPanel x:Name="HeaderPanel" IsItemsHost="True" Margin="0,0,0,0"/>
+                                    </StackPanel>
+                                </ScrollViewer>
+                            </Grid>
+                        </Border>
+                        
+                        <!-- Content Area -->
+                        <Border Grid.Column="1" Background="{StaticResource PtSurfaceContentBrush}">
+                            <ContentPresenter x:Name="PART_SelectedContentHost" ContentSource="SelectedContent"/>
+                        </Border>
+                    </Grid>
+                </ControlTemplate>
+            </TabControl.Template>
+            
+            <TabControl.Resources>
+                <Style TargetType="TabItem">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="TabItem">
+                                <Border Name="Border" Padding="12,8" Margin="12,2,12,2" CornerRadius="4" Background="Transparent">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="32"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+                                        
+                                        <!-- Selection Indicator (Blue Pill) -->
+                                        <Border Name="SelectionIndicator" Width="3" Height="16" CornerRadius="1.5" Background="{StaticResource PtAccentBrush}" HorizontalAlignment="Left" VerticalAlignment="Center" Visibility="Collapsed" Margin="-8,0,0,0"/>
+                                        
+                                        <!-- Icon PlaceHolder -->
+                                        <TextBlock Grid.Column="0" Text="{Binding Tag, RelativeSource={RelativeSource TemplatedParent}}" 
+                                                   FontFamily="Segoe UI Emoji" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#CCCCCC"/>
+                                        
+                                        <!-- Label -->
+                                        <ContentPresenter Grid.Column="1" VerticalAlignment="Center" ContentSource="Header"/>
+                                        
+                                        <!-- Status Indicator -->
+                                        <Ellipse Name="StatusDot" Grid.Column="2" Width="8" Height="8" Fill="{StaticResource PtStatusEnabledBrush}" VerticalAlignment="Center" Visibility="Collapsed"/>
+                                    </Grid>
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsSelected" Value="True">
+                                        <!-- Soft dark blue/grey background like PowerToys -->
+                                        <Setter TargetName="Border" Property="Background" Value="#2A2A2A" />
+                                        <Setter TargetName="SelectionIndicator" Property="Visibility" Value="Visible" />
+                                    </Trigger>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter TargetName="Border" Property="Background" Value="#333333" />
+                                    </Trigger>
+                                    <!-- Mouse over takes precedence, so we redefine selected+hover if needed, but it's fine -->
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Setter Property="Foreground" Value="{StaticResource PtTextPrimaryBrush}"/>
+                    <Setter Property="FontSize" Value="14"/>
+                </Style>
+            </TabControl.Resources>
+
+            <!-- 1. DASHBOARD -->
+            <TabItem Header="Dashboard" Tag="🏠">
+                <settings:DashboardPanel DataContext="{Binding}"/>
+            </TabItem>
+
+            <!-- 2. GENERAL -->
+            <TabItem Header="General" Tag="⚙️">
+                <settings:GeneralSettingsPanel DataContext="{Binding SettingsViewModel.GeneralSettings}"/>
+            </TabItem>
+
+            <TabItem Header="UTILITIES" IsHitTestVisible="False" Margin="24,16,0,8">
+                <TabItem.Template>
+                    <ControlTemplate>
+                        <TextBlock Text="UTILITIES" Style="{StaticResource PtSectionTitle}" Margin="0"/>
+                    </ControlTemplate>
+                </TabItem.Template>
+            </TabItem>
+
+            <!-- 3. HOTKEYS -->
+            <TabItem Header="Keyboard Manager" Tag="⌨️">
+                <settings:HotkeySettingsPanel DataContext="{Binding SettingsViewModel.HotkeySettings}"/>
+            </TabItem>
+
+            <!-- 4. HISTORY -->
+            <TabItem Header="Clipboard History" Tag="📋">
+                <Grid Margin="24,20">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <StackPanel Grid.Row="0" Margin="0,0,0,24">
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
+                            <TextBlock Text="📋" FontSize="28" Margin="0,0,12,0" VerticalAlignment="Center"/>
+                            <TextBlock Text="Clipboard History" FontSize="28" FontWeight="SemiBold" Foreground="{StaticResource PtTextPrimaryBrush}" VerticalAlignment="Center"/>
+                        </StackPanel>
+                        <TextBlock Text="View and manage all items currently saved in your clipboard database." Foreground="{StaticResource PtTextSecondaryBrush}" FontSize="14"/>
+                    </StackPanel>
+                    
+                    <controls:HistoryPanel Grid.Row="1" DataContext="{Binding HistoryViewModel}"/>
+                </Grid>
+            </TabItem>
+
+        </TabControl>
+    </Grid>
+</Window>
