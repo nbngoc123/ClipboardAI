@@ -6,7 +6,9 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <ListView ItemsSource="{Binding Items}" Background="Transparent" BorderThickness="0" Foreground="White">
+        <ListView ItemsSource="{Binding Items}" Background="Transparent" BorderThickness="0" Foreground="White"
+                  ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
+                  ScrollViewer.VerticalScrollBarVisibility="Hidden">
             <ListView.ItemContainerStyle>
                 <Style TargetType="ListViewItem">
                     <Setter Property="Margin" Value="0,0,0,8"/>
