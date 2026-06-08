@@ -162,7 +162,7 @@
         </Grid>
 
         <!-- Drawer Handle (Close Button) on the Right Edge -->
-        <Button Content="&#xE76C;" FontFamily="Segoe MDL2 Assets" Width="20" Height="60" Command="{Binding ClosePanelCommand}" 
+        <Button Content="&#xE76B;" FontFamily="Segoe MDL2 Assets" Width="20" Height="60" Command="{Binding ClosePanelCommand}" 
                 Foreground="#FACC15" FontSize="12" FontWeight="Bold" Cursor="Hand" ToolTip="Close AI Panel" 
                 HorizontalAlignment="Right" VerticalAlignment="Center">
             <Button.Template>
