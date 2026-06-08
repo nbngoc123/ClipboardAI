@@ -49,5 +49,6 @@ public static class ServiceRegistration
         // Register ViewModels
         services.AddSingleton<ClipboardAI.ViewModels.AI.AIPanelViewModel>();
         services.AddSingleton<ClipboardAI.ViewModels.Settings.AISettingsViewModel>();
+        services.AddSingleton<ClipboardAI.ViewModels.Settings.AIToolsConfigViewModel>();
     }
 }

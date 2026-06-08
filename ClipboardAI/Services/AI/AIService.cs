@@ -61,11 +61,14 @@ public class AIService : IAIService
             requestUrl = $"{endpoint.Replace("/openai/v1/responses", "")}/openai/deployments/{modelName}/chat/completions?api-version=2024-02-15-preview";
         }
 
+        string extractLangText = settings.ExtractLanguage == "Auto" ? "" : $"Always extract and translate the data into {settings.ExtractLanguage}. ";
+        string customPromptText = string.IsNullOrWhiteSpace(settings.ExtractCustomPrompt) ? "" : $"Additional Rules: {settings.ExtractCustomPrompt}";
+
         var requestBody = new
         {
             messages = new[]
             {
-                new { role = "system", content = "You are an intelligent data extractor. Analyze the user's unstructured text and extract key-value pairs representing the structured data. Return the extracted data by calling the 'extract_structured_data' function." },
+                new { role = "system", content = $"You are an intelligent data extractor. Analyze the user's unstructured text and extract key-value pairs representing the structured data. {extractLangText}{customPromptText} Return the extracted data by calling the 'extract_structured_data' function." },
                 new { role = "user", content = text }
             },
             tools = new[]
@@ -176,11 +179,15 @@ public class AIService : IAIService
         if (endpoint.Contains("chat/completions")) requestUrl = endpoint;
         else if (endpoint.Contains("/openai/v1/responses")) requestUrl = $"{endpoint.Replace("/openai/v1/responses", "")}/openai/deployments/{modelName}/chat/completions?api-version=2024-02-15-preview";
 
+        string summaryLang = settings.SummaryLanguage ?? "Vietnamese";
+        string transLang = settings.TranslationLanguage ?? "Vietnamese";
+        string tone = settings.AITone ?? "Professional";
+
         var requestBody = new
         {
             messages = new[]
             {
-                new { role = "system", content = "You are an AI assistant. Your task is to provide a concise summary of the provided text, and also translate the ENTIRE text into Vietnamese (if the source is not Vietnamese) or English (if the source is Vietnamese). Use the tool call to return the structured results." },
+                new { role = "system", content = $"You are an AI assistant. Your task is to provide a concise summary of the provided text in {summaryLang}, and also translate the ENTIRE text into {transLang}. Please use a {tone} tone. Use the tool call to return the structured results." },
                 new { role = "user", content = text }
             },
             tools = new[]

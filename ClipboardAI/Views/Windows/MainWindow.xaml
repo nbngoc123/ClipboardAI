@@ -138,6 +138,11 @@
                 <settings:AISettingsPanel DataContext="{Binding SettingsViewModel.AISettings}"/>
             </TabItem>
 
+            <!-- 3.6 AI Behaviors -->
+            <TabItem Header="AI Behaviors" Tag="🧠">
+                <settings:AIToolsConfigPanel DataContext="{Binding SettingsViewModel.AIToolsConfig}"/>
+            </TabItem>
+
             <!-- 4. HISTORY -->
             <TabItem Header="Clipboard History" Tag="📋">
                 <Grid Margin="24,20">

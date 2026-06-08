@@ -15,4 +15,11 @@ public class UserSettings
     public string AIEndpoint { get; set; } = "https://aistudio1303-resource.services.ai.azure.com/";
     public string AIToken { get; set; } = "";
     public string AIModelName { get; set; } = "gpt-4.1-mini";
+
+    // AI Tool Behaviors
+    public string ExtractLanguage { get; set; } = "Auto";
+    public string ExtractCustomPrompt { get; set; } = "";
+    public string SummaryLanguage { get; set; } = "Vietnamese";
+    public string TranslationLanguage { get; set; } = "Vietnamese";
+    public string AITone { get; set; } = "Professional";
 }
