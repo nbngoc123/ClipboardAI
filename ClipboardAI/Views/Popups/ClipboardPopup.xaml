@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:controls="clr-namespace:ClipboardAI.Views.Controls"
         Title="Clipboard History" 
-        Height="520" Width="380"
+        Height="520" SizeToContent="Width"
         WindowStyle="None"
         AllowsTransparency="True"
         ResizeMode="NoResize"
@@ -49,7 +49,21 @@
             </Grid>
                        
             <controls:SearchBar Grid.Row="0" DataContext="{Binding HistoryViewModel.SearchViewModel}" Margin="16,40,16,10"/>
-            <controls:HistoryPanel Grid.Row="1" DataContext="{Binding HistoryViewModel}" Margin="8,0,8,8"/>
+            
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="380"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                
+                <controls:HistoryPanel Grid.Column="0" DataContext="{Binding HistoryViewModel}" Margin="8,0,8,8"/>
+                
+                <!-- Expanded AI Panel -->
+                <Border Grid.Column="1" Width="380" Background="#050A15" BorderBrush="#1F2937" BorderThickness="1,0,0,0" 
+                        Visibility="{Binding AIPanelViewModel.IsVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    <controls:AIPanel DataContext="{Binding AIPanelViewModel}"/>
+                </Border>
+            </Grid>
             
             <!-- Toast Notification -->
             <Border Grid.Row="0" Grid.RowSpan="2" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,40"

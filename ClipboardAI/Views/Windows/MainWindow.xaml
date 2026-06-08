@@ -132,6 +132,11 @@
             <TabItem Header="Keyboard Manager" Tag="⌨️">
                 <settings:HotkeySettingsPanel DataContext="{Binding SettingsViewModel.HotkeySettings}"/>
             </TabItem>
+            
+            <!-- 3.5 AI -->
+            <TabItem Header="AI Integration" Tag="✨">
+                <settings:AISettingsPanel DataContext="{Binding SettingsViewModel.AISettings}"/>
+            </TabItem>
 
             <!-- 4. HISTORY -->
             <TabItem Header="Clipboard History" Tag="📋">

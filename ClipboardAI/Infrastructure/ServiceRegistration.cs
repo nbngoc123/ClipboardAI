@@ -41,5 +41,13 @@ public static class ServiceRegistration
         // Views
         services.AddSingleton<MainWindow>();
         services.AddSingleton<ClipboardPopup>();
+        
+        // AI Services
+        services.AddSingleton<ClipboardAI.Services.AI.IAIService, ClipboardAI.Services.AI.AIService>();
+        services.AddSingleton<ClipboardAI.Services.OCR.IOcrService, ClipboardAI.Services.OCR.OcrService>();
+
+        // Register ViewModels
+        services.AddSingleton<ClipboardAI.ViewModels.AI.AIPanelViewModel>();
+        services.AddSingleton<ClipboardAI.ViewModels.Settings.AISettingsViewModel>();
     }
 }

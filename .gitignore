@@ -26,3 +26,4 @@ bld/
 
 # Secrets
 **/secrets.json
+*.exe  

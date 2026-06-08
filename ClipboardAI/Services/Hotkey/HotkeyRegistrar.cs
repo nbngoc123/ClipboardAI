@@ -32,6 +32,13 @@ public class HotkeyRegistrar
             }
         } catch { /* Ignore invalid */ }
         
+        try {
+            if (!string.IsNullOrEmpty(_settingsManager.CurrentSettings.SnippingOcrHotkey)) {
+                var gesture = (KeyGesture)converter.ConvertFromString(_settingsManager.CurrentSettings.SnippingOcrHotkey)!;
+                _hotkeyService.Register("SnippingOcr", gesture.Key, gesture.Modifiers);
+            }
+        } catch { /* Ignore invalid */ }
+        
         // Hardcode slots for now
         _hotkeyService.Register("PasteNextBatchItem", Key.X, ModifierKeys.Control | ModifierKeys.Shift);
 
@@ -45,6 +52,7 @@ public class HotkeyRegistrar
     {
         _hotkeyService.Unregister("OpenPopup");
         _hotkeyService.Unregister("ToggleBatchCopy");
+        _hotkeyService.Unregister("SnippingOcr");
         _hotkeyService.Unregister("PasteNextBatchItem");
         _hotkeyService.Unregister("PasteSlot1");
         _hotkeyService.Unregister("PasteSlot2");

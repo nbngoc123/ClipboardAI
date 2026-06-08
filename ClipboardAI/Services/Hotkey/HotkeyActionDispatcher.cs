@@ -37,6 +37,33 @@ public class HotkeyActionDispatcher
                     _trayIconService.ShowNotification("Batch Copy", "🔴 Batch Recording Started! Copied items will be queued.");
                 }
                 break;
+            case "SnippingOcr":
+                System.Windows.Application.Current.Dispatcher.Invoke(async () => 
+                {
+                    var window = new Views.Windows.SnippingWindow();
+                    if (window.ShowDialog() == true && window.CapturedImage != null)
+                    {
+                        try
+                        {
+                            var ocrService = ClipboardAI.Infrastructure.ServiceLocator.GetService<ClipboardAI.Services.OCR.IOcrService>();
+                            var text = await ocrService.ExtractTextFromImageAsync(window.CapturedImage);
+                            if (!string.IsNullOrWhiteSpace(text))
+                            {
+                                System.Windows.Clipboard.SetText(text);
+                                _trayIconService.ShowNotification("Snipping OCR", "Text extracted and copied to clipboard!");
+                            }
+                            else
+                            {
+                                _trayIconService.ShowNotification("Snipping OCR", "No text found in the selected region.");
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            _trayIconService.ShowNotification("OCR Error", ex.Message);
+                        }
+                    }
+                });
+                break;
             case "PasteNextBatchItem":
                 var item = _clipboardService.GetNextBatchItem();
                 if (item != null)

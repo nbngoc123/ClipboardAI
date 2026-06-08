@@ -21,11 +21,13 @@ public partial class HistoryViewModel : ObservableObject
     private bool _isBatchRecording;
 
     private readonly ClipboardAI.Services.Settings.SettingsManager _settingsManager;
+    private readonly ClipboardAI.ViewModels.AI.AIPanelViewModel _aiPanelViewModel;
 
-    public HistoryViewModel(IClipboardRepository repository, ClipboardAI.Services.Settings.SettingsManager settingsManager)
+    public HistoryViewModel(IClipboardRepository repository, ClipboardAI.Services.Settings.SettingsManager settingsManager, ClipboardAI.ViewModels.AI.AIPanelViewModel aiPanelViewModel)
     {
         _repository = repository;
         _settingsManager = settingsManager;
+        _aiPanelViewModel = aiPanelViewModel;
         SearchViewModel.SearchQueryChanged += OnSearchQueryChanged;
     }
 
@@ -138,5 +140,18 @@ public partial class HistoryViewModel : ObservableObject
         Items.Remove(item);
         await _repository.DeleteAsync(item.Id);
         ShowToast("Item deleted!");
+    }
+
+    [RelayCommand]
+    private void ExtractItemData(ClipboardItem item)
+    {
+        if (item == null || string.IsNullOrEmpty(item.Content)) return;
+        if (item.ContentType != ClipboardContentType.Text)
+        {
+            ShowToast("Smart Extraction is only supported for text.");
+            return;
+        }
+        
+        _aiPanelViewModel.OpenPanelForContent(item.Content);
     }
 }

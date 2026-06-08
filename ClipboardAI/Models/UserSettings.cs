@@ -9,4 +9,10 @@ public class UserSettings
     public bool EnableKeyboardManager { get; set; } = true;
     public string OpenPopupHotkey { get; set; } = "Ctrl+Shift+V";
     public string ToggleBatchCopyHotkey { get; set; } = "Ctrl+Shift+B";
+    public string SnippingOcrHotkey { get; set; } = "Ctrl+Shift+O";
+    
+    // AI Settings
+    public string AIEndpoint { get; set; } = "https://aistudio1303-resource.services.ai.azure.com/";
+    public string AIToken { get; set; } = "";
+    public string AIModelName { get; set; } = "gpt-4.1-mini";
 }

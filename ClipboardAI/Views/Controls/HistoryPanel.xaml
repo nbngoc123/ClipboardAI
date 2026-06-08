@@ -79,6 +79,24 @@
 
                         <!-- Action Buttons -->
                         <StackPanel Grid.Column="2" Orientation="Horizontal" VerticalAlignment="Top" Margin="8,0,0,0">
+                            <!-- Extract Data Button -->
+                            <Button Content="✨" Width="28" Height="28" Background="Transparent" BorderThickness="0" Foreground="#D946EF" ToolTip="Smart Extract Data (AI)" Cursor="Hand" Margin="0,0,4,0"
+                                    Command="{Binding DataContext.ExtractItemDataCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}" 
+                                    CommandParameter="{Binding}">
+                                <Button.Template>
+                                    <ControlTemplate TargetType="Button">
+                                        <Border Name="BtnBorder" Background="Transparent" CornerRadius="4">
+                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        </Border>
+                                        <ControlTemplate.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter TargetName="BtnBorder" Property="Background" Value="#4C1D95"/>
+                                            </Trigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </Button.Template>
+                            </Button>
+                            
                             <!-- Copy Button -->
                             <Button Content="📋" Width="28" Height="28" Background="Transparent" BorderThickness="0" Foreground="#0EA5E9" ToolTip="Copy to Clipboard" Cursor="Hand" Margin="0,0,4,0"
                                     Command="{Binding DataContext.CopyToClipboardCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}" 
