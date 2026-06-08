@@ -13,8 +13,8 @@
                 <Style TargetType="ListViewItem">
                     <Setter Property="Margin" Value="0,0,0,8"/>
                     <Setter Property="Padding" Value="16,12"/>
-                    <Setter Property="Background" Value="#2D2D2D"/>
-                    <Setter Property="BorderBrush" Value="#454545"/>
+                    <Setter Property="Background" Value="#0F172A"/>
+                    <Setter Property="BorderBrush" Value="#0EA5E9"/>
                     <Setter Property="BorderThickness" Value="1"/>
                     <Setter Property="Foreground" Value="White"/>
                     <Setter Property="Template">
@@ -25,8 +25,9 @@
                                 </Border>
                                 <ControlTemplate.Triggers>
                                     <Trigger Property="IsSelected" Value="True">
-                                        <Setter Property="Background" Value="#383838"/>
-                                        <Setter Property="BorderBrush" Value="#005FB8"/>
+                                        <Setter Property="Background" Value="#10B981"/>
+                                        <Setter Property="BorderBrush" Value="#059669"/>
+                                        <Setter Property="Foreground" Value="White"/>
                                     </Trigger>
                                 </ControlTemplate.Triggers>
                             </ControlTemplate>
@@ -40,11 +41,12 @@
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
                         </Grid.ColumnDefinitions>
                         <!-- Thêm icon hoặc status ở Column 0 nếu cần -->
                         <StackPanel Grid.Column="1">
                             <!-- Hiển thị Text -->
-                            <TextBlock Text="{Binding PreviewText}" FontWeight="SemiBold" Foreground="White" FontSize="14" TextTrimming="CharacterEllipsis" MaxWidth="600" Margin="0,0,0,4">
+                            <TextBlock Text="{Binding PreviewText}" FontWeight="SemiBold" Foreground="#FBBF24" FontSize="14" TextTrimming="CharacterEllipsis" MaxWidth="600" Margin="0,0,0,4">
                                 <TextBlock.Style>
                                     <Style TargetType="TextBlock">
                                         <Setter Property="Visibility" Value="Visible" />
@@ -73,6 +75,45 @@
                             </Border>
                             
                             <TextBlock Text="{Binding DisplayCreatedAt}" Foreground="#888888" FontSize="12"/>
+                        </StackPanel>
+
+                        <!-- Action Buttons -->
+                        <StackPanel Grid.Column="2" Orientation="Horizontal" VerticalAlignment="Top" Margin="8,0,0,0">
+                            <!-- Copy Button -->
+                            <Button Content="📋" Width="28" Height="28" Background="Transparent" BorderThickness="0" Foreground="#0EA5E9" ToolTip="Copy to Clipboard" Cursor="Hand" Margin="0,0,4,0"
+                                    Command="{Binding DataContext.CopyToClipboardCommand, RelativeSource={RelativeSource AncestorType=UserControl}}" 
+                                    CommandParameter="{Binding}">
+                                <Button.Template>
+                                    <ControlTemplate TargetType="Button">
+                                        <Border Name="BtnBorder" Background="Transparent" CornerRadius="4">
+                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        </Border>
+                                        <ControlTemplate.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter TargetName="BtnBorder" Property="Background" Value="#1E3A8A"/>
+                                            </Trigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </Button.Template>
+                            </Button>
+                            
+                            <!-- Delete Button -->
+                            <Button Content="❌" Width="28" Height="28" Background="Transparent" BorderThickness="0" Foreground="#FF4A4A" ToolTip="Delete Item" Cursor="Hand"
+                                    Command="{Binding DataContext.DeleteItemCommand, RelativeSource={RelativeSource AncestorType=UserControl}}" 
+                                    CommandParameter="{Binding}">
+                                <Button.Template>
+                                    <ControlTemplate TargetType="Button">
+                                        <Border Name="BtnBorder" Background="Transparent" CornerRadius="4">
+                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        </Border>
+                                        <ControlTemplate.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter TargetName="BtnBorder" Property="Background" Value="#451A1A"/>
+                                            </Trigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </Button.Template>
+                            </Button>
                         </StackPanel>
                     </Grid>
                 </DataTemplate>

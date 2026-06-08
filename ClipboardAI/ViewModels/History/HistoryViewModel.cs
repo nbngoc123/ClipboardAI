@@ -70,11 +70,37 @@ public partial class HistoryViewModel : ObservableObject
         });
     }
 
+    [ObservableProperty]
+    private string _toastMessage = string.Empty;
+
+    [ObservableProperty]
+    private bool _isToastVisible;
+
+    private async void ShowToast(string message)
+    {
+        Application.Current.Dispatcher.Invoke(() =>
+        {
+            ToastMessage = message;
+            IsToastVisible = true;
+        });
+        
+        await Task.Delay(2000);
+        
+        Application.Current.Dispatcher.Invoke(() =>
+        {
+            IsToastVisible = false;
+        });
+    }
+
     [RelayCommand]
     private void CopyToClipboard(ClipboardItem item)
     {
-        if (item == null || string.IsNullOrEmpty(item.Content)) return;
-        try { System.Windows.Clipboard.SetText(item.Content); } catch { }
+        if (item == null) return;
+        if (!string.IsNullOrEmpty(item.Content))
+        {
+            try { System.Windows.Clipboard.SetText(item.Content); } catch { }
+        }
+        ShowToast("Copied to clipboard!");
     }
 
     [RelayCommand]
@@ -91,6 +117,7 @@ public partial class HistoryViewModel : ObservableObject
     {
         if (item == null) return;
         Items.Remove(item);
-        // await _repository.DeleteAsync(item.Id);
+        await _repository.DeleteAsync(item.Id);
+        ShowToast("Item deleted!");
     }
 }

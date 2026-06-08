@@ -50,4 +50,11 @@ public class ClipboardRepository : IClipboardRepository
             );";
         await conn.ExecuteAsync(sql, new { keepCount });
     }
+
+    public async Task DeleteAsync(int id)
+    {
+        using var conn = _context.CreateConnection();
+        var sql = "DELETE FROM ClipboardItems WHERE Id = @id;";
+        await conn.ExecuteAsync(sql, new { id });
+    }
 }

@@ -9,4 +9,5 @@ public interface IClipboardRepository
     Task<IEnumerable<ClipboardItem>> GetRecentAsync(int limit = 50);
     Task<int> InsertAsync(ClipboardItem item);
     Task DeleteOldestAsync(int keepCount);
+    Task DeleteAsync(int id);
 }

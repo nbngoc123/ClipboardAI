@@ -15,7 +15,7 @@
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
     </Window.Resources>
     
-    <Border Background="#202020" BorderBrush="#454545" BorderThickness="1" CornerRadius="8" Margin="10">
+    <Border Background="#0A192F" BorderBrush="#D946EF" BorderThickness="2" CornerRadius="8" Margin="10">
         <Border.Effect>
             <DropShadowEffect Color="Black" BlurRadius="15" ShadowDepth="4" Opacity="0.5"/>
         </Border.Effect>
@@ -49,6 +49,16 @@
                        
             <controls:SearchBar Grid.Row="0" DataContext="{Binding HistoryViewModel.SearchViewModel}" Margin="16,40,16,10"/>
             <controls:HistoryPanel Grid.Row="1" DataContext="{Binding HistoryViewModel}" Margin="8,0,8,8"/>
+            
+            <!-- Toast Notification -->
+            <Border Grid.Row="0" Grid.RowSpan="2" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,40"
+                    Background="#10B981" CornerRadius="20" Padding="16,8" Panel.ZIndex="999"
+                    Visibility="{Binding HistoryViewModel.IsToastVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
+                <Border.Effect>
+                    <DropShadowEffect Color="Black" BlurRadius="10" ShadowDepth="2" Opacity="0.5"/>
+                </Border.Effect>
+                <TextBlock Text="{Binding HistoryViewModel.ToastMessage}" Foreground="White" FontWeight="SemiBold" FontSize="14"/>
+            </Border>
         </Grid>
     </Border>
 </Window>
