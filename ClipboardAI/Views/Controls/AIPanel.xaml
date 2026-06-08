@@ -20,10 +20,32 @@
 
         <!-- Header -->
         <StackPanel Grid.Row="0" Margin="0,0,0,16">
-            <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
-                <TextBlock Text="✨" FontSize="28" Margin="0,0,12,0" VerticalAlignment="Center"/>
-                <TextBlock Text="Smart AI Assistant" FontSize="24" FontWeight="SemiBold" Foreground="White" VerticalAlignment="Center"/>
-            </StackPanel>
+            <Grid Margin="0,0,0,8">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" Text="✨" FontSize="28" Margin="0,0,12,0" VerticalAlignment="Center"/>
+                <TextBlock Grid.Column="1" Text="Smart AI Assistant" FontSize="24" FontWeight="SemiBold" Foreground="White" VerticalAlignment="Center"/>
+                
+                <Button Grid.Column="2" Content="✕" Width="32" Height="32" Command="{Binding ClosePanelCommand}" 
+                        Background="Transparent" BorderThickness="0" Foreground="#888888" Cursor="Hand" ToolTip="Close AI Panel" VerticalAlignment="Top">
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border Name="BtnBorder" Background="Transparent" CornerRadius="4">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter TargetName="BtnBorder" Property="Background" Value="#333333"/>
+                                    <Setter Property="Foreground" Value="White"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+            </Grid>
             <TextBlock Text="Choose an AI action to process your clipboard content." Foreground="#A0A0A0" FontSize="14" TextWrapping="Wrap"/>
             
             <StackPanel Orientation="Horizontal" Margin="0,12,0,0">

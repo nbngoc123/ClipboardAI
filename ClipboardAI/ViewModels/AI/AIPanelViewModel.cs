@@ -44,6 +44,13 @@ public partial class AIPanelViewModel : ObservableObject
     }
 
     [RelayCommand]
+    private void ClosePanel()
+    {
+        IsVisible = false;
+        _cancellationTokenSource?.Cancel();
+    }
+
+    [RelayCommand]
     private async Task ExtractDataAsync()
     {
         if (string.IsNullOrWhiteSpace(TargetContent))
