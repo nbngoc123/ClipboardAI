@@ -37,9 +37,13 @@
             <TextBlock Text="REMAPPED KEYS" Style="{StaticResource PtSectionTitle}"/>
             <Border Style="{StaticResource PtSectionCard}">
                 <StackPanel>
+                    <!-- Open Popup -->
                     <Border BorderBrush="{StaticResource PtBorderBrush}" BorderThickness="0,0,0,0.5" Padding="20,16">
                         <Grid>
-                            <TextBlock Text="Open Clipboard Popup" FontSize="14" FontWeight="SemiBold" Foreground="{StaticResource PtTextPrimaryBrush}" VerticalAlignment="Center"/>
+                            <StackPanel VerticalAlignment="Center">
+                                <TextBlock Text="Open Clipboard Popup" FontSize="14" FontWeight="SemiBold" Foreground="{StaticResource PtTextPrimaryBrush}"/>
+                                <TextBlock Text="Show clipboard history popup" Foreground="{StaticResource PtTextSecondaryBrush}" FontSize="12" Margin="0,2,0,0"/>
+                            </StackPanel>
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                                 <Border Style="{StaticResource PtKeyboardBadge}">
                                     <TextBlock Text="{Binding OpenPopupHotkey}" Style="{StaticResource PtKeyboardBadgeText}"/>
@@ -48,9 +52,14 @@
                             </StackPanel>
                         </Grid>
                     </Border>
+
+                    <!-- Toggle Batch Recording -->
                     <Border BorderBrush="{StaticResource PtBorderBrush}" BorderThickness="0,0,0,0.5" Padding="20,16">
                         <Grid>
-                            <TextBlock Text="Toggle Batch Mode" FontSize="14" FontWeight="SemiBold" Foreground="{StaticResource PtTextPrimaryBrush}" VerticalAlignment="Center"/>
+                            <StackPanel VerticalAlignment="Center">
+                                <TextBlock Text="Toggle Batch Recording" FontSize="14" FontWeight="SemiBold" Foreground="{StaticResource PtTextPrimaryBrush}"/>
+                                <TextBlock Text="Start / Stop collecting clipboard items into a queue" Foreground="{StaticResource PtTextSecondaryBrush}" FontSize="12" Margin="0,2,0,0"/>
+                            </StackPanel>
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                                 <Border Style="{StaticResource PtKeyboardBadge}">
                                     <TextBlock Text="{Binding ToggleBatchCopyHotkey}" Style="{StaticResource PtKeyboardBadgeText}"/>
@@ -59,6 +68,39 @@
                             </StackPanel>
                         </Grid>
                     </Border>
+
+                    <!-- Paste Next Batch Item -->
+                    <Border BorderBrush="{StaticResource PtBorderBrush}" BorderThickness="0,0,0,0.5" Padding="20,16">
+                        <Grid>
+                            <StackPanel VerticalAlignment="Center">
+                                <TextBlock Text="Paste Next Batch Item" FontSize="14" FontWeight="SemiBold" Foreground="{StaticResource PtTextPrimaryBrush}"/>
+                                <TextBlock Text="Paste items from the batch queue one by one" Foreground="{StaticResource PtTextSecondaryBrush}" FontSize="12" Margin="0,2,0,0"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                <Border Style="{StaticResource PtKeyboardBadge}">
+                                    <TextBlock Text="{Binding PasteNextBatchItemHotkey}" Style="{StaticResource PtKeyboardBadgeText}"/>
+                                </Border>
+                                <Button Content="Edit" Command="{Binding EditPasteNextBatchItemHotkeyCommand}" Foreground="{StaticResource PtAccentBrush}" Background="Transparent" BorderThickness="0" Margin="16,0,0,0" Cursor="Hand"/>
+                            </StackPanel>
+                        </Grid>
+                    </Border>
+
+                    <!-- Snipping OCR -->
+                    <Border BorderBrush="{StaticResource PtBorderBrush}" BorderThickness="0,0,0,0.5" Padding="20,16">
+                        <Grid>
+                            <StackPanel VerticalAlignment="Center">
+                                <TextBlock Text="Snipping OCR" FontSize="14" FontWeight="SemiBold" Foreground="{StaticResource PtTextPrimaryBrush}"/>
+                                <TextBlock Text="Select a screen region and extract text from it" Foreground="{StaticResource PtTextSecondaryBrush}" FontSize="12" Margin="0,2,0,0"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                <Border Style="{StaticResource PtKeyboardBadge}">
+                                    <TextBlock Text="{Binding SnippingOcrHotkey}" Style="{StaticResource PtKeyboardBadgeText}"/>
+                                </Border>
+                                <Button Content="Edit" Command="{Binding EditSnippingOcrHotkeyCommand}" Foreground="{StaticResource PtAccentBrush}" Background="Transparent" BorderThickness="0" Margin="16,0,0,0" Cursor="Hand"/>
+                            </StackPanel>
+                        </Grid>
+                    </Border>
+
                     <Border Padding="20,16">
                         <Button Content="Add remap" HorizontalAlignment="Left" Background="#2B2B2B" Foreground="White" BorderBrush="{StaticResource PtBorderBrush}" BorderThickness="1" Padding="12,6"/>
                     </Border>
