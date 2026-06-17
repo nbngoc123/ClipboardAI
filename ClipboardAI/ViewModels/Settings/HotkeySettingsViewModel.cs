@@ -28,11 +28,12 @@ public partial class HotkeySettingsViewModel : ObservableObject
     {
         _settingsManager = settingsManager;
         _hotkeyRegistrar = hotkeyRegistrar;
-        _enableKeyboardManager = _settingsManager.CurrentSettings.EnableKeyboardManager;
-        _openPopupHotkey = _settingsManager.CurrentSettings.OpenPopupHotkey;
-        _toggleBatchCopyHotkey = _settingsManager.CurrentSettings.ToggleBatchCopyHotkey;
-        _pasteNextBatchItemHotkey = _settingsManager.CurrentSettings.PasteNextBatchItemHotkey;
-        _snippingOcrHotkey = _settingsManager.CurrentSettings.SnippingOcrHotkey;
+        var s = _settingsManager.CurrentSettings;
+        _enableKeyboardManager = s.EnableKeyboardManager;
+        _openPopupHotkey = s.OpenPopupHotkey;
+        _toggleBatchCopyHotkey = s.ToggleBatchCopyHotkey;
+        _pasteNextBatchItemHotkey = string.IsNullOrEmpty(s.PasteNextBatchItemHotkey) ? "Ctrl+Shift+X" : s.PasteNextBatchItemHotkey;
+        _snippingOcrHotkey = string.IsNullOrEmpty(s.SnippingOcrHotkey) ? "Ctrl+Shift+O" : s.SnippingOcrHotkey;
     }
 
     partial void OnEnableKeyboardManagerChanged(bool value)
