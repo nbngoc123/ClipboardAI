@@ -50,4 +50,6 @@ public class ClipboardService : IClipboardService
         }
         return null;
     }
+
+    public int GetBatchQueueCount() => _batchMode.Queue.Count;
 }

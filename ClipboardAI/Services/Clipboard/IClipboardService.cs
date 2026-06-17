@@ -13,5 +13,6 @@ public interface IClipboardService
     void StartBatchRecording();
     void StopBatchRecording();
     ClipboardItem? GetNextBatchItem();
+    int GetBatchQueueCount();
     bool IsBatchRecording { get; }
 }

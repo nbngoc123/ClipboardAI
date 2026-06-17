@@ -18,6 +18,12 @@ public partial class HotkeySettingsViewModel : ObservableObject
     [ObservableProperty]
     private string _toggleBatchCopyHotkey;
 
+    [ObservableProperty]
+    private string _pasteNextBatchItemHotkey;
+
+    [ObservableProperty]
+    private string _snippingOcrHotkey;
+
     public HotkeySettingsViewModel(SettingsManager settingsManager, ClipboardAI.Services.Hotkey.HotkeyRegistrar hotkeyRegistrar)
     {
         _settingsManager = settingsManager;
@@ -25,6 +31,8 @@ public partial class HotkeySettingsViewModel : ObservableObject
         _enableKeyboardManager = _settingsManager.CurrentSettings.EnableKeyboardManager;
         _openPopupHotkey = _settingsManager.CurrentSettings.OpenPopupHotkey;
         _toggleBatchCopyHotkey = _settingsManager.CurrentSettings.ToggleBatchCopyHotkey;
+        _pasteNextBatchItemHotkey = _settingsManager.CurrentSettings.PasteNextBatchItemHotkey;
+        _snippingOcrHotkey = _settingsManager.CurrentSettings.SnippingOcrHotkey;
     }
 
     partial void OnEnableKeyboardManagerChanged(bool value)
@@ -54,6 +62,32 @@ public partial class HotkeySettingsViewModel : ObservableObject
         {
             ToggleBatchCopyHotkey = dialog.HotkeyString;
             _settingsManager.CurrentSettings.ToggleBatchCopyHotkey = dialog.HotkeyString;
+            _settingsManager.SaveSettings();
+            _hotkeyRegistrar.RegisterDefaultHotkeys();
+        }
+    }
+
+    [RelayCommand]
+    private void EditPasteNextBatchItemHotkey()
+    {
+        var dialog = new ClipboardAI.Views.Popups.EditHotkeyWindow(PasteNextBatchItemHotkey);
+        if (dialog.ShowDialog() == true)
+        {
+            PasteNextBatchItemHotkey = dialog.HotkeyString;
+            _settingsManager.CurrentSettings.PasteNextBatchItemHotkey = dialog.HotkeyString;
+            _settingsManager.SaveSettings();
+            _hotkeyRegistrar.RegisterDefaultHotkeys();
+        }
+    }
+
+    [RelayCommand]
+    private void EditSnippingOcrHotkey()
+    {
+        var dialog = new ClipboardAI.Views.Popups.EditHotkeyWindow(SnippingOcrHotkey);
+        if (dialog.ShowDialog() == true)
+        {
+            SnippingOcrHotkey = dialog.HotkeyString;
+            _settingsManager.CurrentSettings.SnippingOcrHotkey = dialog.HotkeyString;
             _settingsManager.SaveSettings();
             _hotkeyRegistrar.RegisterDefaultHotkeys();
         }

@@ -9,6 +9,7 @@ public class UserSettings
     public bool EnableKeyboardManager { get; set; } = true;
     public string OpenPopupHotkey { get; set; } = "Ctrl+Shift+V";
     public string ToggleBatchCopyHotkey { get; set; } = "Ctrl+Shift+B";
+    public string PasteNextBatchItemHotkey { get; set; } = "Ctrl+Shift+X";
     public string SnippingOcrHotkey { get; set; } = "Ctrl+Shift+O";
     
     // AI Settings

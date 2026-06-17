@@ -68,16 +68,42 @@ public class HotkeyActionDispatcher
                 var item = _clipboardService.GetNextBatchItem();
                 if (item != null)
                 {
-                    if (item.ContentType == Models.ClipboardContentType.Image)
+                    // Notify user of the item being pasted (optional)
+                    var remaining = _clipboardService.GetBatchQueueCount();
+                    _trayIconService.ShowNotification("Batch Paste", $"Pasting item... ({remaining} items remaining)");
+                    
+                    // Set clipboard FIRST, then paste after delay
+                    System.Windows.Application.Current.Dispatcher.Invoke(() =>
                     {
-                        var bmp = new System.Windows.Media.Imaging.BitmapImage(new Uri(item.Content));
-                        System.Windows.Clipboard.SetImage(bmp);
-                    }
-                    else
-                    {
-                        System.Windows.Clipboard.SetText(item.Content);
-                    }
+                        if (item.ContentType == Models.ClipboardContentType.Image)
+                        {
+                            try
+                            {
+                                var bitmap = new System.Drawing.Bitmap(item.Content);
+                                System.Windows.Clipboard.SetImage(
+                                    System.Windows.Interop.Imaging.CreateBitmapSourceFromHBitmap(
+                                        bitmap.GetHbitmap(),
+                                        IntPtr.Zero,
+                                        System.Windows.Int32Rect.Empty,
+                                        System.Windows.Media.Imaging.BitmapSizeOptions.FromEmptyOptions()));
+                                bitmap.Dispose();
+                            }
+                            catch
+                            {
+                                _trayIconService.ShowNotification("Batch Paste", "Cannot paste image item.");
+                                return;
+                            }
+                        }
+                        else
+                        {
+                            System.Windows.Clipboard.SetText(item.Content);
+                        }
+                    });
                     SimulatePaste();
+                }
+                else
+                {
+                    _trayIconService.ShowNotification("Batch Paste", "No more items in batch queue. Use Ctrl+Shift+B to record a new batch.");
                 }
                 break;
             case "PasteSlot1":

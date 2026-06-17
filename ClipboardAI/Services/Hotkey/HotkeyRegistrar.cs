@@ -39,8 +39,12 @@ public class HotkeyRegistrar
             }
         } catch { /* Ignore invalid */ }
         
-        // Hardcode slots for now
-        _hotkeyService.Register("PasteNextBatchItem", Key.X, ModifierKeys.Control | ModifierKeys.Shift);
+        try {
+            if (!string.IsNullOrEmpty(_settingsManager.CurrentSettings.PasteNextBatchItemHotkey)) {
+                var gesture = (KeyGesture)converter.ConvertFromString(_settingsManager.CurrentSettings.PasteNextBatchItemHotkey)!;
+                _hotkeyService.Register("PasteNextBatchItem", gesture.Key, gesture.Modifiers);
+            }
+        } catch { /* Ignore invalid */ }
 
         // Ctrl+1..9 -> Paste Slot
         _hotkeyService.Register("PasteSlot1", Key.D1, ModifierKeys.Control);
